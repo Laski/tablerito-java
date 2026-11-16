@@ -1,0 +1,13 @@
+# What Tablerito needs to run. Maven isn't here: it comes with the repo's wrapper.
+[tools]
+java = "temurin-21"
+
+[tasks.dev]
+description = "Start Tablerito at http://localhost:8080"
+run = "./mvnw spring-boot:run"
+run_windows = '.\mvnw.cmd spring-boot:run'
+
+[tasks.test]
+description = "Run the tests"
+run = "./mvnw test"
+run_windows = '.\mvnw.cmd test'

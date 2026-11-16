@@ -1,0 +1,18 @@
+target/
+.mvn/wrapper/maven-wrapper.jar
+
+# What the app leaves behind when it runs
+attachments/
+tablerito.log
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+.factorypath
+bin/
+
+.DS_Store

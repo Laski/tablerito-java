@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="|${board.name} · Tablerito|">Tablero · Tablerito</title>
+  <link rel="stylesheet" th:href="@{/styles.css}">
+  <script th:src="@{/board.js}" defer></script>
+</head>
+<body>
+<header>
+  <a class="brand" th:href="@{/}">Tablerito</a>
+  <h1 th:text="${board.name}">Tablero</h1>
+</header>
+
+<main class="lists">
+  <section class="list" th:each="list : ${board.lists}" th:data-list-id="${list.id}">
+    <h2 th:text="${list.name}">Lista</h2>
+
+    <article class="card" th:each="card : ${list.cards}">
+      <p th:text="${card.title}">Tarjeta</p>
+
+      <ul class="attachments" th:if="${!card.attachments.isEmpty()}">
+        <li th:each="attachment : ${card.attachments}">
+          <a th:href="@{/attachments/{name}(name=${attachment})}" th:text="${attachment}">archivo.pdf</a>
+        </li>
+      </ul>
+
+      <form class="move" method="post" hidden th:action="@{/cards/{card}/move(card=${card.id})}">
+        <input type="hidden" name="listId">
+      </form>
+
+      <form class="attach" method="post" enctype="multipart/form-data"
+            th:action="@{/cards/{card}/attachments(card=${card.id})}">
+        <label>Adjuntar archivo<input type="file" name="file" hidden></label>
+      </form>
+    </article>
+
+    <form class="inline" method="post" th:action="@{/lists/{list}/cards(list=${list.id})}">
+      <input name="title" placeholder="Nueva tarjeta" required>
+      <button>Agregar</button>
+    </form>
+  </section>
+</main>
+
+</body>
+</html>

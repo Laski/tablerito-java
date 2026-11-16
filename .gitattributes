@@ -1,0 +1,4 @@
+# Mac/Linux scripts must keep LF line endings even when cloned on Windows
+/mvnw text eol=lf
+*.sh text eol=lf
+*.cmd text eol=crlf
